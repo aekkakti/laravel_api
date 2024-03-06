@@ -11,7 +11,8 @@ class ProductController extends Controller
     public function addProduct(Request $request) {
         $validator = Validator::make($request->all(), [
            'product_name' => 'required',
-           'product_description' => 'required'
+           'product_description' => 'required',
+            'product_cost' => 'required',
         ]);
 
         if ($validator->fails()){
@@ -20,7 +21,8 @@ class ProductController extends Controller
 
         $product = Product::create([
             'product_name' => $request->product_name,
-            'product_description' => $request->product_description
+            'product_description' => $request->product_description,
+            'product_cost' => $request->product_cost,
         ]);
 
         return response()->json(['message' => 'Продукт успешно создан', 'product' => $product], 201);
@@ -39,7 +41,8 @@ class ProductController extends Controller
     public function updateProduct(Request $request, Product $product) {
         $product->update([
             'product_name' => $request->product_name,
-            'product_description' => $request->product_description
+            'product_description' => $request->product_description,
+            'product_cost' => $request->product_cost,
         ]);
 
         return response()->json(['message' => 'Продукт успешно изменён', 'product' => $product], 201);

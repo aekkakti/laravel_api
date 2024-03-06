@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
-class Product extends Authenticatable
+class Order extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -19,8 +19,10 @@ class Product extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'product_name',
-        'product_description',
-        'product_cost'
+        // нужно придумать, как привязать массив продуктов с заказами
+        'products',
+        'address',
+        'order_cost',
+        'user_id',
     ];
 }
